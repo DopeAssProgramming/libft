@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 19:34:16 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 19:45:38 by jhotchki         ###   ########.fr       */
+/*   Created: 2024/05/01 17:57:31 by jhotchki          #+#    #+#             */
+/*   Updated: 2024/05/01 17:57:33 by jhotchki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_color_fd(int fd, char *s, char *color)
 {
-	int	len;
+	int			len;
+	const char	*reset_col;
 
 	len = 0;
+	reset_col = "\033[0m";
+	write(fd, color, ft_strlen(color));
 	while (*s)
-	{
-		len += write(fd, s, 1);
-		s++;
-	}
+		len += write(fd, s++, 1);
+	write(fd, reset_col, ft_strlen(reset_col));
 	return (len);
 }

@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <ctype.h>
+# include <fcntl.h>
 
 /***********LIBC FUNCTIONS************/
 int		ft_isalpha(int c);
@@ -54,10 +55,23 @@ char	**ft_split(const char *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+int		ft_putchar_fd(char c, int fd);
+int		ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+/********MORE FUNCTIONS********/
+
+void	ft_quicksort(int *tab, int start, int end);
+void	ft_quicksort_params(char **tab, int start, int end);
+long	ft_atol(const char *nptr);
+double	ft_atof(char *s);
+int		ft_putstr_color_fd(int fd, char *s, char *color);
+char	*ft_strcpy(char *dest, const char *src);
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_strcat(char *dest, char *src);
+size_t	ft_matrix_len(char **matrix);
+void	ft_free_matrix_i(char **matrix, int i);
 
 /********STRUCTURES**********/
 
@@ -66,6 +80,14 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct s_stack
+{
+	void			*content;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}					t_stack;
+
 /**********BONUS FUNCTIONS***********/
 
 t_list	*ft_lstnew(void *content);
@@ -77,5 +99,17 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_rotate(t_stack **stack);
+void	ft_reverse_rotate(t_stack **stack);
+void	ft_push(t_stack **to, t_stack **from);
+void	ft_swap_top2(t_stack **head);
+t_stack	*ft_last(t_stack *lst);
+
+/******GNL******/
+
+size_t	ft_strlen_g(char *s);
+char	*ft_strjoin_g(char *s1, char *s2);
+char	*ft_strchr_g(char *s, int c);
+char	*get_next_line(int fd);
 
 #endif 

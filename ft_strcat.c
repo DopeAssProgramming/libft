@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 19:34:16 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 19:45:38 by jhotchki         ###   ########.fr       */
+/*   Created: 2024/05/01 17:58:12 by jhotchki          #+#    #+#             */
+/*   Updated: 2024/05/01 17:58:15 by jhotchki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+char	*ft_strcat(char *dest, char *src)
 {
-	int	len;
-
-	len = 0;
-	while (*s)
+	while (*dest)
+		dest++;
+	while (*src)
 	{
-		len += write(fd, s, 1);
-		s++;
+		*dest = *src;
+		dest++;
+		src++;
 	}
-	return (len);
+	*dest = '\0';
+	return (dest);
 }
